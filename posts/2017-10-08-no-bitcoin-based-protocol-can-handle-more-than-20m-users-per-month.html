@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Rune K. Svendsen's Blog</title>
+        <link rel="stylesheet" href="../css/haskell.org.css" />
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Rune K. Svendsen's Blog</a>
+            </div>
+            <div id="navigation">
+                <a href="../">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../archive.html">Archive</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <h1>No Bitcoin-based protocol can handle more than 20M users per month</h1>
+            <div class="info">
+    Posted on October  8, 2017
+    
+        by Rune K. Svendsen
+    
+</div>
+
+<p>To solve Bitcoin’s scalability challenge, many so-called <em>layer 2</em> protocols have been proposed. All of these protocols operate on the same, relatively simple, principle:</p>
+<ol style="list-style-type: decimal">
+<li>User deposits bitcoins (via the Bitcoin blockchain) into the layer 2 system</li>
+<li>Stuff happens within the layer 2 system – without touching the Bitcoin blockchain – which assigns arbitrarily small parts of the deposited bitcoins to other users (recipients) in the system</li>
+<li>Recipients withdraw received bitcoins (into the Bitcoin blockchain)</li>
+</ol>
+<p>This increases the scalability of transferring bitcoins from user to user, since at <em>Step 2</em> nothing touches the blockchain. In fact, since nothing touches the blockchain, the transaction speed (as measured in transactions per second) is theoretically unlimited, and in practice only limited by latency and bandwidth between nodes.</p>
+<p>The problem, however, is <em>Step 1</em>. When a user receives money – which humans usually receive monthly as wages/salaries – they need to deposit it into the layer 2 system, in order for it to be available within it. At the current block size limit of 1 MB, the maximum number of deposit transactions per month – assuming the simplest Bitcoin transaction (single-signature) with a size of 224 bytes is used – is 20 million<sup>1</sup>.</p>
+<p>This is a maximum, since a single-signature Bitcoin transaction isn’t very interesting in the context of layer 2 protocols (it essentially constitutes sending your bitcoins to a trusted third party). Thus, with more complex (e.g. multi-signature) deposit transactions, the number of monthly users will be less than 20 million. Furthermore, this figure does not include the withdrawal transactions (where recipients withdraw funds from the layer 2 system to their private Bitcoin address), which will decrease the maximum number of supported users even further.</p>
+<p>In conclusion, if Bitcoin is to scale to more than ~0.2% of the world’s population, layer 2 protocols – operating on the principle described above – will not be sufficient. The Bitcoin blockchain will need to increase its capacity in conjunction with layer 2 protocols, or it will not have sufficient capacity to support more than – at most – 20 million users per month.</p>
+<p>      <sup>1</sup> 1,000,000 bytes per block/224 bytes per transactions = 4464 tx/block<br>          4464 tx/block*6 blocks per hour*24 hours per day = ~643000 tx/day<br>          643000 tx/day*30 days per month = ~20 million tx/month</p>
+
+        </div>
+
+        <div id="footer">
+            Powered by
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+        </div>
+    </body>
+</html>
